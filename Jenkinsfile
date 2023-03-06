@@ -1,6 +1,7 @@
 pipeline {
     agent { label 'builtin' }
-    triggers { pollSCM ('H/15 * * * *') }
+    triggers { pollSCM ('* * * * *') }
+             { cron ('H/15 * * * *') }
     parameters {
         choice(name: 'MAVEN_GOAL', choices: ['package', 'install', 'clean'], description: 'Maven Goal')
     }
