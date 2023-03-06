@@ -31,5 +31,23 @@ pipeline {
                 junit testResults: '**/surefire-reports/TEST-*.xml'
             }
         }
+        post{
+            success {
+                mail 
+                    subject: "THis is subject of project ${JOB_NAME} SUCCESS",
+                    body: "This is the body of mail",
+                    to: "team-all-qt@qt.com",
+                    from: "devops@qt.com"
+
+            }
+            failure {
+                mail 
+                    subject: "THis is subject of project ${JOB_NAME} FAILURE",
+                    body: "This is the body of mail",
+                    to: "team-all-qt@qt.com",
+                    from: "devops@qt.com"
+
+            }
+        }
     }
 }
