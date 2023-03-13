@@ -3,13 +3,13 @@ pipeline{
         label 'nodes'
     }
     triggers{
-            pollSCM('* * * * *')
+            pollSCM('H/15 * * * 1-5')
         }
     stages{
         stage('vcs') {
             steps{
                 git url: 'https://github.com/Danish-Ansarii/game-of-life.git',
-                    branch: 'master'
+                    branch: 'cron'
             }
         }
         stage('build') {
@@ -24,6 +24,6 @@ pipeline{
             }
             
         }        
-        
+
     }
 }
