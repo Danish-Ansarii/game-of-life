@@ -2,7 +2,7 @@ pipeline{
     agent{
         label 'nodes'
         trigger{
-            cron('*/15 * * * 1-5')
+            pollSCM('* * * * *')
         }
     }
     stages{
