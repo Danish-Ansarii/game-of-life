@@ -5,6 +5,9 @@ pipeline{
     triggers{
             pollSCM('* * * * *')
         }
+    
+    parameters { string(name: 'PARA', defaultValue: 'clean package', description: 'this is use to clean package') }
+
     stages{
         stage('vcs') {
             steps{
@@ -25,7 +28,7 @@ pipeline{
             
         }        
         
-        
+
     }
 
 }
