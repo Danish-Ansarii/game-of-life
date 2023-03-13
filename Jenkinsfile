@@ -6,7 +6,7 @@ pipeline{
             pollSCM('* * * * *')
         }
     
-    parameters { string(name: 'PARA', defaultValue: 'clean package', description: 'this is use to clean package') }
+    parameters { string(name: 'parameter', defaultValue: 'clean package', description: 'this is use to clean package') }
 
     stages{
         stage('vcs') {
