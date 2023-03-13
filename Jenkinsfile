@@ -2,7 +2,7 @@ pipeline{
     agent{
         label 'nodes'
     }
-    trigger{
+    triggers{
             pollSCM('* * * * *')
         }
     stages{
@@ -19,8 +19,8 @@ pipeline{
         }
         stage('Archive artifacts') {
             steps {
-                archiveArtifacts artifacts: '**/target/gameoflife.war', followSymlinks: false
-                junit testResults  '**/target/surefire-reports/TEST-*.xml'
+                archiveArtifacts artifacts: '**/target/gameoflife.war'
+                junit   '**/target/surefire-reports/TEST-*.xml'
             }
             
         }        
