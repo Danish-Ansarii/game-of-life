@@ -22,6 +22,7 @@ pipeline{
                 archiveArtifacts artifacts: '**/target/gameoflife.war', followSymlinks: false,
                 junit testResults  '**/target/surefire-reports/TEST-*.xml'
             }
+            
         }        
     }
 }
