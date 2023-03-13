@@ -1,51 +1,27 @@
-pipeline {
-    agent { label 'builtin' }
-    triggers { pollSCM ('* * * * *') }
-             { cron ('H/15 * * * *') }
-    parameters {
-        choice(name: 'MAVEN_GOAL', choices: ['package', 'install', 'clean'], description: 'Maven Goal')
+pipeline{
+    agent{
+        label 'nodes'
+        trigger{
+            cron('*/15 * * * 1-5')
+        }
     }
-    stages {
+    stages{
         stage('vcs') {
-            steps {
-                git url: 'https://github.com/Danish-Ansarii/game-of-life.git',
+            steps{
+                git url: 'https://github.com/wakaleo/game-of-life.git',
                     branch: 'master'
             }
         }
-        stage('package') {
-            tools {
-                jdk 'jdk_8'
-            }
+        stage('build') {
             steps {
-                sh "mvn ${params.MAVEN_GOAL}"
+                sh 'export PATH="/usr/lib/jvm/java-1.8.0-openjdk-amd64/bin:$PATH" && mvn package'
             }
         }
-        stage('copy build') {
+        stage('Archive artifacts') {
             steps {
-                sh 'mkdir -p /tmp/$JOB_NAME/${BUILD_ID} && cp ./gameoflife-web/target/gameoflife.war /tmp/$JOB_NAME/${BUILD_ID}/'
+                archiveArtifacts artifacts: '**/target/gameoflife.war', followSymlinks: false,
+                junit testResults  '**/target/surefire-reports/TEST-*.xml'
             }
-        }
-        stage('post build') {
-            steps {
-                archiveArtifacts artifacts: '**/target/gameoflife.war',
-                                 onlyIfSuccessful: true
-                junit testResults: '**/surefire-reports/TEST-*.xml'
-            }
-        }
-        
-    }
-    post {
-        success {
-            mail to: "team-all-qt@qt.com",
-                from: "devops@qt.com",
-                subject: "This is subject of project ${JOB_NAME} SUCCESS",
-                body: "This is the body of the success mail"
-        }
-        failure {
-            mail to: "team-all-qt@qt.com",
-                from: "devops@qt.com",
-                subject: "This is subject of project ${JOB_NAME} FAILURE",
-                body: "This is the body of the failure mail"
-        }
+        }        
     }
 }
