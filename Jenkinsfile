@@ -1,9 +1,9 @@
 pipeline{
     agent{
-        label 'nodes'
+        label 'jdk_8'
     }
     triggers{
-            pollSCM('H/15 * * * 1-5')
+            pollSCM('* * * * *')
         }
     stages{
         stage('vcs') {
