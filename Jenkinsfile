@@ -20,6 +20,13 @@ pipeline{
                 sh 'export PATH="/usr/lib/jvm/java-1.8.0-openjdk-amd64/bin:$PATH" && mvn package'
             }
         }
+
+        stage('SonarQube Analysis') {
+            steps {
+                sh 'mvn sonar:sonar -Dsonar.login=01d6cd64f8f186040722ff45953f4c80f8e102be'
+            }
+        }
+
         stage('Archive artifacts') {
             steps {
                 archiveArtifacts artifacts: '**/target/gameoflife.war'
