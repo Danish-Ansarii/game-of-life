@@ -5,6 +5,9 @@ pipeline{
     triggers{
             pollSCM('* * * * *')
         }
+     environment {
+    SONAR_TOKEN ='9e219b631864ebf87bf14f4f34df981d48c327dd'
+     }
     
     parameters { string(name: 'parameter', defaultValue: 'clean package', description: 'this is use to clean package') }
 
@@ -23,7 +26,7 @@ pipeline{
 
         stage('SonarQube Analysis') {
             steps {
-                sh 'mvn sonar:sonar -Dsonar.login=01d6cd64f8f186040722ff45953f4c80f8e102be'
+                sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=gol-fs_gameoflife'
             }
         }
 
