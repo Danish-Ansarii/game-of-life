@@ -24,11 +24,22 @@ pipeline{
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-                sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=gol-fs_gameoflife'
+        // stage('SonarQube Analysis') {
+        //     steps {
+        //         sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=gol-fs_gameoflife'
+        //     }
+
+        // }
+
+        stage('SonarQube analysis') {
+            withSonarQubeEnv(credentialsId: '9e219b631864ebf87bf14f4f34df981d48c327dd', installationName: 'gol-fs_gameoflife') { // You can override the credential to be used
+            sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
             }
-        }
+  }
+
+
+
+
 
         stage('Archive artifacts') {
             steps {
