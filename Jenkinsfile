@@ -3,7 +3,7 @@ pipeline {
         label 'ubuntu_node'
     }
     
-    tools {
+    tools { 
         jdk 'jdk_8' 
     }
 
