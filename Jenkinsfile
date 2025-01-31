@@ -2,9 +2,7 @@ pipeline {
     agent {
         label 'node1'
     }
-    triggers {
-        cron('H */4 * * 1-5')
-    }
+    triggers { pollSCM('* * * * *') }
 
     tools { 
         jdk 'jdk_8' 
