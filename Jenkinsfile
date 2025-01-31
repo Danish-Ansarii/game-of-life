@@ -2,6 +2,9 @@ pipeline {
     agent {
         label 'ubuntu_node'
     }
+    triggers {
+        cron('H */4 * * 1-5')
+    }
     
     tools { 
         jdk 'jdk_8' 
