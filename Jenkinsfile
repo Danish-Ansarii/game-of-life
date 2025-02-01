@@ -10,7 +10,7 @@ pipeline {
     parameters {
          string(name: 'mvn_goal', defaultValue: 'package', description: 'package build')
     
-
+    }
     stages {
         stage('VCS') {
             steps {
