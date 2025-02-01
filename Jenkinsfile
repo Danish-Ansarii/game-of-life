@@ -21,7 +21,7 @@ pipeline {
             }
         }
         
-        stage('Packages and Test Reports') {
+        stage('Packages and Tests Reports') {
             steps {
                 archiveArtifacts artifacts: '**/target/gameoflife.war', followSymlinks: false
                 junit '**/target/surefire-reports/TEST-*.xml'
