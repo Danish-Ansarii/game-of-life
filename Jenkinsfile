@@ -7,6 +7,9 @@ pipeline {
     tools { 
         jdk 'jdk_8' 
     }
+    parameters {
+         string(name: 'mvn_goal', defaultValue: 'package', description: 'package build')
+    
 
     stages {
         stage('VCS') {
@@ -17,7 +20,7 @@ pipeline {
         
         stage('Build') {
             steps {
-                sh 'mvn package'
+                sh "mvn ${params.mvn_goal}"
             }
         }
         
