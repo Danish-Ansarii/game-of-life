@@ -31,7 +31,7 @@ pipeline {
                     sh """
                         mvn sonar:sonar \
                         -Dsonar.projectKey=Kubernetes_Project \
-                        -Dsonar.organization=Danish-Ansarii \
+                        -Dsonar.organization=danish-ansarii \
                         -Dsonar.host.url=https://sonarcloud.io \
                         -Dsonar.login=$SONAR_TOKEN                    
                     """
