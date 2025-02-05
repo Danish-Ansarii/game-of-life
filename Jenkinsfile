@@ -30,7 +30,7 @@ pipeline {
                 withSonarQubeEnv('SONAR_CLOUD') {
                     sh """
                         mvn sonar:sonar \
-                        -Dsonar.projectKey=Kubernetes_Project \
+                        -Dsonar.projectKey=gameoflife \
                         -Dsonar.organization=danish-ansarii \
                         -Dsonar.host.url=https://sonarcloud.io \
                         -Dsonar.login=$SONAR_TOKEN                    
