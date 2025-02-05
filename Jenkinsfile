@@ -35,38 +35,38 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            emailext (
-                subject: "Jenkins Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """
-                    Good news! 🎉
+    // post {
+    //     success {
+    //         emailext (
+    //             subject: "Jenkins Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+    //             body: """
+    //                 Good news! 🎉
 
-                    The build for job *${env.JOB_NAME}* (Build #${env.BUILD_NUMBER}) was successful.
+    //                 The build for job *${env.JOB_NAME}* (Build #${env.BUILD_NUMBER}) was successful.
 
-                    Check the console output here: ${env.BUILD_URL}
+    //                 Check the console output here: ${env.BUILD_URL}
 
-                    Regards,
-                    Jenkins
-                """,
-                to: 'dani@gmail.com'
-            )
-        }
-        failure {
-            emailext (
-                subject: "Jenkins Build Failure: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """
-                    Oops! ❌
+    //                 Regards,
+    //                 Jenkins
+    //             """,
+    //             to: 'dani@gmail.com'
+    //         )
+    //     }
+    //     failure {
+    //         emailext (
+    //             subject: "Jenkins Build Failure: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+    //             body: """
+    //                 Oops! ❌
 
-                    The build for job *${env.JOB_NAME}* (Build #${env.BUILD_NUMBER}) has failed.
+    //                 The build for job *${env.JOB_NAME}* (Build #${env.BUILD_NUMBER}) has failed.
 
-                    Please check the console output: ${env.BUILD_URL}
+    //                 Please check the console output: ${env.BUILD_URL}
 
-                    Regards,
-                    Jenkins
-                """,
-                to: 'dani@gmail.com'
-            )
-        }
-    }
+    //                 Regards,
+    //                 Jenkins
+    //             """,
+    //             to: 'dani@gmail.com'
+    //         )
+    //     }
+    // }
 }
